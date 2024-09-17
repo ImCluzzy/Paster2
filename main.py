@@ -5,7 +5,7 @@ from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 import telebot
 import threading
 import yaml
-import jobs
+import jobs.telgram
 
 # Создаем каталог logs, если его нет
 if not os.path.exists('logs'):
@@ -56,7 +56,7 @@ def vk_bot():
                 jobs.telgram.send_message_with_attachments_to_telegram(text, attachments)
             elif event.obj.text:
                 text = event.obj.text
-                jobs.send_message(text)
+                jobs.telgram.send_message(text)
         else:
             logging.warning(event.type)
         logging.info('')
